@@ -108,7 +108,8 @@ export const Hero: React.FC = () => {
             </h1>
 
             <p className="text-gray-400 text-xl mb-10 max-w-xl font-light leading-relaxed">
-              The premier IDO launchpad for the Capybara Chill Club ecosystem. Stake NFTs, earn yield, and get early access to the most relaxed projects in DeFi.
+              Your capybara's gateway to DeFi.<br />
+              Launch, stake and grow — all inside the Chill Club world.
             </p>
 
             <div className="grid grid-cols-3 gap-4 mb-10">
@@ -126,16 +127,19 @@ export const Hero: React.FC = () => {
               </div>
             </div>
 
-            <div className="flex gap-4">
+            <div className="flex flex-wrap gap-4">
               <a
                 href="#projects"
                 onClick={handleScrollToProjects}
                 className="cursor-pointer bg-capy-teal text-[#0f172a] px-8 py-4 rounded-xl font-bold tracking-widest uppercase hover:bg-capy-mint transition-all shadow-[0_0_20px_rgba(0,193,182,0.3)] hover:shadow-[0_0_30px_rgba(146,244,239,0.5)] transform hover:-translate-y-1 flex items-center justify-center"
               >
-                View Pools
+                Enter Pools
               </a>
               <button className="bg-white/5 border border-white/10 text-white px-8 py-4 rounded-xl font-bold tracking-widest uppercase hover:bg-white/10 transition-all">
-                Buy $CHILL
+                Fuel Your Capybara
+              </button>
+              <button className="bg-white/5 border border-white/10 text-white px-8 py-4 rounded-xl font-bold tracking-widest uppercase hover:bg-white/10 transition-all">
+                Equip $CCC
               </button>
             </div>
           </div>

@@ -1364,13 +1364,13 @@ export const CapybaraGame: React.FC = () => {
         // Attack animation - lunce forward and glow
         if (isAttacking) {
             ctx.shadowColor = '#FF6600';
-            ctx.shadowBlur = 30;
+            ctx.shadowBlur = 15;
             ctx.translate(dir * 10, -5); // Lunge forward
         }
         // Powered up glow
         else if (powered) {
             ctx.shadowColor = '#FFD700';
-            ctx.shadowBlur = 20;
+            ctx.shadowBlur = 10;
         }
 
         // Размер пикселя для pixel art - УВЕЛИЧЕН для более толстой капибары!
@@ -1661,7 +1661,7 @@ export const CapybaraGame: React.FC = () => {
         // Angry glow in fight phase
         if (phase === 'FIGHT') {
             ctx.shadowColor = '#FF0000';
-            ctx.shadowBlur = 15;
+            ctx.shadowBlur = 8;
         }
 
         // Bigger shadow for menacing dragon

@@ -1,6 +1,6 @@
 import React from 'react';
-import { 
-  PieChart, Pie, Cell, ResponsiveContainer, Tooltip, 
+import {
+  PieChart, Pie, Cell, ResponsiveContainer, Tooltip,
   AreaChart, Area, XAxis, YAxis, CartesianGrid,
   BarChart, Bar
 } from 'recharts';
@@ -17,11 +17,11 @@ export const Stats: React.FC = () => {
           Market Data
         </h2>
         <p className="text-center text-gray-500 mb-16 text-xl max-w-2xl mx-auto">
-           Transparent analytics for the Chill Club economy.
+          Transparent analytics for the Chill Club economy.
         </p>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-20">
-          
+
           {/* Chart 1: Price History */}
           <div className="bg-white border border-gray-100 shadow-xl p-8 rounded-3xl">
             <h3 className="text-2xl font-bold text-capy-darkTeal mb-6 uppercase tracking-wider">Price Projection</h3>
@@ -30,14 +30,14 @@ export const Stats: React.FC = () => {
                 <AreaChart data={PRICE_DATA}>
                   <defs>
                     <linearGradient id="colorPrice" x1="0" y1="0" x2="0" y2="1">
-                      <stop offset="5%" stopColor="#00c1b6" stopOpacity={0.8}/>
-                      <stop offset="95%" stopColor="#00c1b6" stopOpacity={0}/>
+                      <stop offset="5%" stopColor="#00c1b6" stopOpacity={0.8} />
+                      <stop offset="95%" stopColor="#00c1b6" stopOpacity={0} />
                     </linearGradient>
                   </defs>
                   <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#f0f0f0" />
-                  <XAxis dataKey="name" tick={{fill: '#999', fontSize: 12}} axisLine={false} tickLine={false} />
-                  <YAxis tick={{fill: '#999', fontSize: 12}} axisLine={false} tickLine={false} />
-                  <Tooltip 
+                  <XAxis dataKey="name" tick={{ fill: '#999', fontSize: 12 }} axisLine={false} tickLine={false} />
+                  <YAxis tick={{ fill: '#999', fontSize: 12 }} axisLine={false} tickLine={false} />
+                  <Tooltip
                     contentStyle={{ borderRadius: '12px', border: 'none', boxShadow: '0 10px 15px -3px rgba(0, 0, 0, 0.1)' }}
                   />
                   <Area type="monotone" dataKey="price" stroke="#00c1b6" strokeWidth={3} fillOpacity={1} fill="url(#colorPrice)" />
@@ -53,10 +53,10 @@ export const Stats: React.FC = () => {
               <ResponsiveContainer width="100%" height="100%">
                 <BarChart data={HOLDER_DATA}>
                   <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#f0f0f0" />
-                  <XAxis dataKey="name" tick={{fill: '#999', fontSize: 12}} axisLine={false} tickLine={false} />
-                  <YAxis tick={{fill: '#999', fontSize: 12}} axisLine={false} tickLine={false} />
-                  <Tooltip 
-                    cursor={{fill: '#f0f0f0'}}
+                  <XAxis dataKey="name" tick={{ fill: '#999', fontSize: 12 }} axisLine={false} tickLine={false} />
+                  <YAxis tick={{ fill: '#999', fontSize: 12 }} axisLine={false} tickLine={false} />
+                  <Tooltip
+                    cursor={{ fill: '#f0f0f0' }}
                     contentStyle={{ borderRadius: '12px', border: 'none', boxShadow: '0 10px 15px -3px rgba(0, 0, 0, 0.1)' }}
                   />
                   <Bar dataKey="holders" fill="#32dcd2" radius={[4, 4, 0, 0]} />
@@ -70,18 +70,18 @@ export const Stats: React.FC = () => {
         {/* Tokenomics Section */}
         <div className="bg-capy-light/20 rounded-[3rem] p-8 lg:p-16">
           <div className="flex flex-col lg:flex-row items-center gap-12">
-            
+
             <div className="w-full lg:w-1/2">
               <h3 className="text-4xl font-bold text-capy-darkTeal mb-6 uppercase tracking-tighter">Distribution</h3>
               <p className="text-lg text-gray-600 mb-8 leading-relaxed">
-                The $CHILL supply is carefully allocated to ensure long-term sustainability and community rewards. 
+                The $CCC supply is carefully allocated to ensure long-term sustainability and community rewards.
                 Liquidity is locked, and team tokens are vested over 12 months.
               </p>
-              
+
               <div className="grid grid-cols-2 gap-4">
                 {TOKENOMICS_DATA.map((item) => (
                   <div key={item.name} className="flex items-center gap-3">
-                    <span className="w-4 h-4 rounded-full" style={{backgroundColor: item.fill}}></span>
+                    <span className="w-4 h-4 rounded-full" style={{ backgroundColor: item.fill }}></span>
                     <span className="font-bold text-gray-800">{item.name} ({item.value}%)</span>
                   </div>
                 ))}
@@ -104,7 +104,7 @@ export const Stats: React.FC = () => {
                       <Cell key={`cell-${index}`} fill={entry.fill} stroke="none" />
                     ))}
                   </Pie>
-                  <Tooltip 
+                  <Tooltip
                     contentStyle={{ backgroundColor: '#fff', border: 'none', borderRadius: '8px', boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1)' }}
                     itemStyle={{ color: '#000', fontFamily: 'Space Grotesk' }}
                   />

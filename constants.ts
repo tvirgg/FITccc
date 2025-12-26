@@ -94,7 +94,7 @@ export const IDO_PROJECTS: IdoProject[] = [
 export const STAKING_TIERS: StakingTier[] = [
   {
     name: "Tourist",
-    requirement: "10,000 $CHILL",
+    requirement: "10,000 $CCC",
     multiplier: "1x",
     allocation: "Lottery",
     image: "/img/newimg/cap84.webp",
@@ -129,7 +129,7 @@ export const FAQ_ITEMS: FaqItem[] = [
   {
     id: 1,
     question: "How do I participate in IDOs?",
-    answer: "You need to stake $CHILL tokens or hold a Capybara Chill Club NFT to qualify for guaranteed allocation tiers."
+    answer: "You need to stake $CCC tokens or hold a Capybara Chill Club NFT to qualify for guaranteed allocation tiers."
   },
   {
     id: 2,
@@ -158,7 +158,7 @@ export const ROADMAP_ITEMS: RoadmapItem[] = [
   {
     phase: "02",
     title: "The Utility",
-    items: ["$CHILL Token Live", "Staking V1 Launched", "First 3 IDOs Sold Out"],
+    items: ["$CCC Token Live", "Staking V1 Launched", "First 3 IDOs Sold Out"],
     status: 'completed'
   },
   {
