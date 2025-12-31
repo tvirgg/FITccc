@@ -5,7 +5,7 @@ export const Footer: React.FC = () => {
     <footer id="footer" className="bg-[#020617] text-white py-12 relative overflow-hidden border-t border-white/5">
       <div className="container mx-auto px-4 flex flex-col md:flex-row justify-between items-center relative z-10">
         <div className="mb-8 md:mb-0">
-          <h2 className="text-4xl font-bold uppercase tracking-widest text-transparent bg-clip-text bg-gradient-to-r from-capy-teal to-capy-mint">capyclab</h2>
+          <h2 className="text-4xl font-bold uppercase tracking-widest text-transparent bg-clip-text bg-gradient-to-r from-capy-teal to-capy-mint">capyclub</h2>
           <p className="text-white/40 text-sm mt-2 font-mono">© 2026 Capybara Chill Club. All Rights Reserved.</p>
         </div>
 

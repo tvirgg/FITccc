@@ -37,7 +37,7 @@ export const Navbar: React.FC<NavbarProps> = ({ currentView, onNavigate }) => {
           >
             <div className="flex flex-col text-left">
               <span className="text-white font-bold text-2xl tracking-tighter lowercase font-sequel leading-none group-hover:text-capy-teal transition-colors duration-300">
-                capyclab
+                capyclub
               </span>
             </div>
           </button>
