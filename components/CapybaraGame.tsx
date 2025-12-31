@@ -3,7 +3,7 @@ import React, { useRef, useEffect, useState } from 'react';
 // --- Constants & Types ---
 
 const CANVAS_WIDTH = 800; // Internal resolution width
-const CANVAS_HEIGHT = 900; // Internal resolution height
+const CANVAS_HEIGHT = 630; // Reduced height by 30%
 const WORLD_WIDTH = 6000; // 3x bigger world!
 const WORLD_HEIGHT = 6000;
 const FOREST_BORDER = 400; // Dark forest perimeter width

@@ -9,100 +9,134 @@ export const Navbar: React.FC<NavbarProps> = ({ currentView, onNavigate }) => {
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
-  // Since scrolling happens inside the divs, we can't easily track window scroll
-  // But we can apply style based on view
-  const isInfo = currentView === 'info';
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 20);
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   return (
-    <nav className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${isInfo ? 'bg-[#020617]/90 backdrop-blur-xl border-b border-white/5 py-4' : 'bg-[#0f172a]/90 backdrop-blur-xl border-b border-white/5 py-4'
-      }`}>
-      <div className="container mx-auto px-6 flex justify-between items-center">
-        <button
-          onClick={() => onNavigate('dashboard')}
-          className="flex items-center gap-3 group cursor-pointer outline-none"
-        >
-          <div
-            className="w-12 h-12 bg-cover bg-center bg-no-repeat shadow-[0_0_20px_rgba(0,193,182,0.1)] group-hover:scale-110 transition-transform overflow-hidden"
-            style={{
-              backgroundImage: 'url("/img/iconFavicon.ico")',
-              backgroundSize: '100% 100%'
-            }}
-          />
-          <div className="flex flex-col text-left">
-            <span className="text-white font-bold text-lg tracking-widest uppercase font-sequel leading-none">
-              Capy<span className="text-capy-teal">Pad</span>
-            </span>
-            <span className="text-[10px] text-white/40 tracking-[0.2em] uppercase mt-0.5">Chill Launchpad</span>
-          </div>
-        </button>
+    <>
+      <nav
+        className={`fixed top-4 left-0 right-0 z-50 transition-all duration-500 flex justify-center px-4`}
+      >
+        <div className={`
+          w-full max-w-5xl 
+          ${scrolled || mobileMenuOpen ? 'bg-[#0f172a]/80 backdrop-blur-xl border-white/10 shadow-[0_0_40px_-10px_rgba(0,193,182,0.3)]' : 'bg-[#0f172a]/40 backdrop-blur-md border-white/5'}
+          border rounded-full px-6 py-3
+          flex justify-between items-center
+          transition-all duration-500
+        `}>
 
-        {/* Desktop Menu */}
-        <div className="hidden md:flex gap-10 items-center">
+          {/* Brand */}
           <button
             onClick={() => onNavigate('dashboard')}
-            className={`text-xs uppercase tracking-[0.15em] font-bold transition-all hover:-translate-y-0.5 relative ${currentView === 'dashboard' ? 'text-white' : 'text-white/40 hover:text-white'
-              }`}
+            className="flex items-center gap-3 group cursor-pointer outline-none pl-2"
           >
+            <div className="flex flex-col text-left">
+              <span className="text-white font-bold text-2xl tracking-tighter lowercase font-sequel leading-none group-hover:text-capy-teal transition-colors duration-300">
+                capyclab
+              </span>
+            </div>
+          </button>
+
+          {/* Desktop Menu */}
+          <div className="hidden md:flex items-center justify-center absolute left-1/2 -translate-x-1/2 gap-1">
+            <NavButton
+              active={currentView === 'dashboard'}
+              onClick={() => onNavigate('dashboard')}
+            >
+              Dashboard
+            </NavButton>
+            <NavButton
+              active={false}
+              onClick={() => onNavigate('dashboard', 'projects')}
+            >
+              Projects
+            </NavButton>
+            <NavButton
+              active={currentView === 'info'}
+              onClick={() => onNavigate('info')}
+            >
+              Info
+            </NavButton>
+          </div>
+
+          {/* Right Area */}
+          <div className="hidden md:flex items-center gap-4">
+            <button className="
+              relative overflow-hidden
+              bg-white text-[#0f172a] px-6 py-2.5 rounded-full 
+              hover:bg-capy-teal hover:text-white
+              transition-all duration-300
+              uppercase text-[10px] font-bold tracking-[0.15em] 
+              shadow-[0_0_20px_rgba(255,255,255,0.2)] hover:shadow-[0_0_30px_rgba(0,193,182,0.6)] 
+              active:scale-95 border border-transparent
+              group
+            ">
+              <span className="relative z-10">Connect Wallet</span>
+            </button>
+          </div>
+
+          {/* Mobile Toggle */}
+          <button
+            className="md:hidden text-white w-10 h-10 flex items-center justify-center rounded-full hover:bg-white/10 transition-colors"
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+          >
+            <span className="sr-only">Menu</span>
+            {mobileMenuOpen ? '✕' : '☰'}
+          </button>
+        </div>
+      </nav>
+
+      {/* Mobile Menu Overlay */}
+      <div className={`
+        fixed inset-0 z-40 bg-[#0f172a]/95 backdrop-blur-2xl transition-all duration-300 flex flex-col items-center justify-center gap-8
+        ${mobileMenuOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'}
+      `}>
+        <div className="flex flex-col items-center gap-6 w-full max-w-xs">
+          <MobileNavButton onClick={() => { onNavigate('dashboard'); setMobileMenuOpen(false); }}>
             Dashboard
-            {currentView === 'dashboard' && <span className="absolute -bottom-2 left-0 w-full h-[2px] bg-capy-teal rounded-full shadow-[0_0_10px_#00c1b6]"></span>}
-          </button>
-
-          <button
-            onClick={() => onNavigate('dashboard', 'projects')}
-            className="text-white/40 hover:text-white text-xs uppercase tracking-[0.15em] font-bold transition-all hover:-translate-y-0.5"
-          >
+          </MobileNavButton>
+          <MobileNavButton onClick={() => { onNavigate('dashboard', 'projects'); setMobileMenuOpen(false); }}>
             Projects
-          </button>
-
-          <button
-            onClick={() => onNavigate('info')}
-            className={`text-xs uppercase tracking-[0.15em] font-bold transition-all hover:-translate-y-0.5 relative ${currentView === 'info' ? 'text-white' : 'text-white/40 hover:text-white'
-              }`}
-          >
+          </MobileNavButton>
+          <MobileNavButton onClick={() => { onNavigate('info'); setMobileMenuOpen(false); }}>
             Info
-            {currentView === 'info' && <span className="absolute -bottom-2 left-0 w-full h-[2px] bg-capy-mint rounded-full shadow-[0_0_10px_#92f4ef]"></span>}
-          </button>
+          </MobileNavButton>
 
-          <button className="bg-white text-[#0f172a] px-8 py-3 rounded-xl hover:bg-gray-200 transition-all uppercase text-[10px] font-bold tracking-[0.15em] shadow-[0_0_25px_rgba(255,255,255,0.2)] hover:shadow-[0_0_35px_rgba(255,255,255,0.4)] active:scale-95 border border-transparent">
+          <div className="h-px w-full bg-white/10 my-2"></div>
+
+          <button className="w-full bg-capy-teal text-[#0f172a] py-4 rounded-xl font-bold uppercase tracking-widest shadow-[0_0_20px_rgba(0,193,182,0.4)]">
             Connect Wallet
           </button>
         </div>
-
-        {/* Mobile Toggle */}
-        <button
-          className="md:hidden text-white text-2xl"
-          onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-        >
-          {mobileMenuOpen ? '✕' : '☰'}
-        </button>
       </div>
-
-      {/* Mobile Menu */}
-      {mobileMenuOpen && (
-        <div className="md:hidden absolute top-full left-0 w-full bg-[#0f172a] border-t border-white/10 p-4 flex flex-col gap-4 shadow-2xl h-screen z-50 backdrop-blur-xl">
-          <button
-            onClick={() => { onNavigate('dashboard'); setMobileMenuOpen(false); }}
-            className="text-white text-left py-4 px-4 uppercase tracking-widest border-b border-white/5 text-lg font-bold hover:bg-white/5 rounded-lg"
-          >
-            Dashboard
-          </button>
-          <button
-            onClick={() => { onNavigate('dashboard', 'projects'); setMobileMenuOpen(false); }}
-            className="text-white text-left py-4 px-4 uppercase tracking-widest border-b border-white/5 text-lg font-bold hover:bg-white/5 rounded-lg"
-          >
-            Projects
-          </button>
-          <button
-            onClick={() => { onNavigate('info'); setMobileMenuOpen(false); }}
-            className="text-white text-left py-4 px-4 uppercase tracking-widest border-b border-white/5 text-lg font-bold hover:bg-white/5 rounded-lg"
-          >
-            Info
-          </button>
-          <button className="bg-capy-teal w-full py-4 mt-4 rounded-xl font-bold uppercase tracking-widest text-[#0f172a] shadow-lg">
-            Connect Wallet
-          </button>
-        </div>
-      )}
-    </nav>
+    </>
   );
 };
+
+const NavButton: React.FC<{ active: boolean; onClick: () => void; children: React.ReactNode }> = ({ active, onClick, children }) => (
+  <button
+    onClick={onClick}
+    className={`
+      px-5 py-2 rounded-full text-xs uppercase tracking-[0.15em] font-bold transition-all duration-300
+      ${active
+        ? 'bg-white/10 text-white shadow-[0_0_15px_rgba(255,255,255,0.1)] border border-white/5'
+        : 'text-white/40 hover:text-white hover:bg-white/5 border border-transparent'}
+    `}
+  >
+    {children}
+  </button>
+);
+
+const MobileNavButton: React.FC<{ onClick: () => void; children: React.ReactNode }> = ({ onClick, children }) => (
+  <button
+    onClick={onClick}
+    className="text-2xl font-bold uppercase tracking-widest text-white hover:text-capy-teal transition-colors"
+  >
+    {children}
+  </button>
+);

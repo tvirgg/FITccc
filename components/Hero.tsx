@@ -139,7 +139,7 @@ export const Hero: React.FC = () => {
                 Fuel Your Capybara
               </button>
               <button className="bg-white/5 border border-white/10 text-white px-8 py-4 rounded-xl font-bold tracking-widest uppercase hover:bg-white/10 transition-all">
-                Equip $CCC
+                Equip capyclab
               </button>
             </div>
           </div>
